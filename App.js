@@ -14,6 +14,7 @@ export default function App() {
                 <View style={styles.burguer}></View>
                 <View style={styles.burguer}></View>
                 <View style={styles.burguer}></View>
+                <View style={styles.burguer}></View>
             </Pressable>
         </View>
 
