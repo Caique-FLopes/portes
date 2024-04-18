@@ -1,40 +1,27 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View, Pressable, Image, FlatList, Text, TouchableOpacity } from 'react-native';
+import { AreaChart, Grid } from 'react-native-svg-charts'
+import * as shape from 'd3-shape'
 
 export default function App() {
+  fetch('http://127.0.0.1:5000/api/dados')
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Erro ao recuperar os dados.');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log(data.cobrado);
+    console.log(data.debito_pago);
+    console.log(data.debito_parcelado);
+  })
+  .catch(error => {
+    console.error('Houve um erro:', error);
+  });
   return (
     <View style={styles.container}>
-        <View style={styles.header}>
-            <Image
-                source={require('./assets/logo.png')}
-            />
-            <StatusBar style="auto" />
-            <Pressable
-                style={styles.menu}>
-                <View style={styles.burguer}></View>
-                <View style={styles.burguer}></View>
-                <View style={styles.burguer}></View>
-                <View style={styles.burguer}></View>
-            </Pressable>
-        </View>
-
-
-        <View>
-            <Text style={{color:'#fff'}}>Análise por:</Text>
-            <View>
-                <FlatList>
-                    <TouchableOpacity>
-                        <Text>Débito pago por mês</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Text>Percentual de Êxito Total ao Longo do Tempo</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity>
-                        <Text>Percentual de Êxito Parcelado ao Longo do Tempo</Text>
-                    </TouchableOpacity>
-                </FlatList>
-            </View>
-        </View>
+      <Text></Text>
     </View>
   );
 }
